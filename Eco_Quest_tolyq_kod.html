@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco-Quest — Экологиялық мәдениет</title>
+<style>
+:root{--green:#16794b;--dark:#123b2b;--lime:#b8e986;--cream:#f5f8ef;--white:#fff;--muted:#63756b;--orange:#f4a340}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--dark);line-height:1.55}
+header{background:linear-gradient(130deg,#0d5538,#188b55);color:white;padding:24px max(20px,calc((100% - 1100px)/2));}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.brand{font-size:1.2rem;font-weight:800;letter-spacing:.4px}.nav a{color:#fff;text-decoration:none;margin-left:16px;font-weight:700;font-size:.95rem}
+.hero{max-width:1100px;margin:auto;padding:50px 0 42px;display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:28px}.eyebrow{color:var(--lime);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:.8rem}.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.06;margin:12px 0}.hero p{font-size:1.08rem;max-width:650px;color:#e5f4e9}.hero-art{font-size:7rem;text-align:center;background:#ffffff18;border:1px solid #ffffff30;border-radius:28px;padding:25px}.btn{display:inline-block;border:0;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;text-decoration:none;background:var(--lime);color:var(--dark);font-size:1rem}.btn.secondary{background:#e7eee8;color:var(--dark)}.btn:disabled{opacity:.45;cursor:not-allowed}
+main{max-width:1000px;margin:0 auto;padding:28px 20px 60px}.section{background:white;border-radius:22px;padding:clamp(20px,4vw,34px);margin:22px 0;box-shadow:0 8px 28px #173b2b0c;border:1px solid #e4ecdf}.section-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}.section-icon{width:48px;height:48px;display:grid;place-items:center;background:#e6f5dc;border-radius:15px;font-size:1.6rem;flex-shrink:0}.section h2{margin:0 0 5px;font-size:1.65rem}.sub{margin:0;color:var(--muted)}
+.stagebar{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:18px 0 24px}.stage{padding:10px 5px;text-align:center;border-radius:12px;background:#edf2ec;color:#6a7b70;font-size:.82rem;font-weight:800}.stage.active{background:#dff4cd;color:#155c39}.stage.done{background:#16794b;color:white}
+.progressline{height:9px;background:#e8eee6;border-radius:10px;overflow:hidden;margin:10px 0 22px}.progressline span{height:100%;display:block;width:0;background:linear-gradient(90deg,#16804e,#b8e986);transition:width .25s}
+.question-card{background:#fbfcf8;border:1px solid #e1eade;border-radius:18px;padding:22px}.qmeta{color:var(--green);font-weight:800;font-size:.86rem}.question-card h3{margin:8px 0 16px;font-size:1.25rem}.answers{display:grid;gap:10px}.answer{display:flex;align-items:flex-start;gap:10px;padding:13px 14px;border:1px solid #dce6da;border-radius:12px;background:white;cursor:pointer;transition:.15s}.answer:hover{border-color:#73b78b;background:#f4fbf0}.answer input{margin-top:5px;accent-color:var(--green)}.answer.correct{border-color:#23955b;background:#e9f8ee}.answer.wrong{border-color:#d96a58;background:#fff0ec}.feedback{margin-top:13px;font-weight:700;min-height:24px}.quiz-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:18px}
+.result{display:none;text-align:center;padding:30px 15px}.result .big{font-size:4rem}.result h3{font-size:1.8rem;margin:8px 0}.score{font-size:2.5rem;font-weight:900;color:var(--green)}
+fieldset{border:0;padding:0;margin:0 0 22px}legend{font-weight:800;font-size:1.03rem;margin-bottom:10px}.option-list{display:grid;gap:9px}.survey-option{display:flex;gap:10px;align-items:flex-start;border:1px solid #dce6da;border-radius:11px;padding:11px 13px;cursor:pointer}.survey-option:hover{background:#f6faf2}.survey-option input{margin-top:5px;accent-color:var(--green)}.survey-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.survey-result{display:none;margin-top:18px;padding:16px;border-radius:12px;background:#e8f7e7}.small{font-size:.9rem;color:var(--muted)}footer{text-align:center;background:#103d2b;color:#dceee1;padding:26px 20px}footer strong{color:white}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:35px 0}.hero-art{font-size:5rem;padding:15px}.nav a{margin-left:0;margin-right:12px}.stagebar{gap:4px}.stage{font-size:.68rem;padding:8px 2px}.question-card{padding:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">🌿 ECO-QUEST</div>
+    <nav><a href="#quest">Квест</a><a href="#survey">Сауалнама</a></nav>
+  </div>
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Ойна • Зертте • Табиғатты қорға</div>
+      <h1>Eco-Quest</h1>
+      <p>Геймификация арқылы экологиялық мәдениетті қалыптастыру. Бес кезеңнен өтіп, 15 тапсырманы орында да, табиғат қорғаушысы атағын иелен!</p>
+      <a class="btn" href="#quest">Квестті бастау →</a>
+    </div>
+    <div class="hero-art" aria-label="Жер планетасы мен өсімдік">🌍🌱</div>
+  </div>
+</header>
+<main>
+<section class="section" id="quest">
+  <div class="section-head"><div class="section-icon">🧭</div><div><h2>Эко-квест: 5 кезең, 15 сұрақ</h2><p class="sub">Әр кезеңде 3 сұрақ бар. Дұрыс жауап үшін 1 ұпай беріледі.</p></div></div>
+  <div class="stagebar" id="stagebar">
+    <div class="stage active">1. Эко-білім</div><div class="stage">2. Қалдықтар</div><div class="stage">3. Су мен ауа</div><div class="stage">4. Биоалуантүрлілік</div><div class="stage">5. Эко-шешім</div>
+  </div>
+  <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><strong id="progressText">1 / 15 сұрақ</strong><span class="small" id="scoreText">Ұпай: 0</span></div>
+  <div class="progressline"><span id="progressFill"></span></div>
+  <div id="quizArea">
+    <div class="question-card">
+      <div class="qmeta" id="qmeta">1-КЕЗЕҢ · ЭКО-БІЛІМ</div>
+      <h3 id="question">Экология нені зерттейді?</h3>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="quiz-actions"><button class="btn secondary" id="restartBtn" type="button">Қайта бастау</button><button class="btn" id="nextBtn" type="button" disabled>Келесі сұрақ →</button></div>
+    </div>
+  </div>
+  <div class="result" id="result">
+    <div class="big" id="resultEmoji">🏆</div><h3>Квест аяқталды!</h3><p>Сенің нәтижең:</p><div class="score" id="finalScore">0 / 15</div><p id="resultMessage"></p>
+    <button class="btn" id="playAgain" type="button">Қайта ойнау ↻</button>
+  </div>
+</section>
+
+<section class="section" id="survey">
+  <div class="section-head"><div class="section-icon">📝</div><div><h2>Қосымша Ә. Оқушыларға арналған сауалнама</h2><p class="sub">«Экологиялық геймификация мен Eco-Quest форматының тиімділігі»</p></div></div>
+  <p class="small">Әр сұраққа өз пікіріңізге сәйкес бір жауап таңдаңыз. Сауалнама нәтижесі осы бетте көрсетіледі.</p>
+  <form id="surveyForm">
+    <fieldset><legend>1. Экологиялық геймификация (эко-ойындар, квесттер, эко-челлендждер) туралы есту деңгейіңіз қандай?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s1" value="Түсінігім бар" required> Түсінігім бар</label>
+      <label class="survey-option"><input type="radio" name="s1" value="Аздап білемін"> Аздап білемін</label>
+      <label class="survey-option"><input type="radio" name="s1" value="Естімегенмін"> Естімегенмін</label>
+    </div></fieldset>
+    <fieldset><legend>2. Сіздің мектебіңізде/сыныбыңызда экологияны оқытуда қандай интерактивті құралдар немесе ойын элементтері бар?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s2" value="Эко-квесттер, цифрлық ойындар мен викториналар" required> Эко-квесттер, цифрлық ойындар мен викториналар (Kahoot, QR-кодтар)</label>
+      <label class="survey-option"><input type="radio" name="s2" value="Офлайн эко-жарыстар"> Офлайн эко-жарыстар (макулатура/батарейка жинау, постер жасау)</label>
+      <label class="survey-option"><input type="radio" name="s2" value="Мұндай құралдар мен ойындар жоқ"> Мұндай құралдар мен ойындар жоқ</label>
+    </div></fieldset>
+    <fieldset><legend>3. Эко-квесттер мен интерактивті ойындардың сабақта қолданылуы экологиялық біліміңіз бен әдеттеріңізге қаншалықты әсер етеді?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s3" value="Өте көп әсер етеді" required> Өте көп әсер етеді</label>
+      <label class="survey-option"><input type="radio" name="s3" value="Орташа әсер етеді"> Орташа әсер етеді</label>
+      <label class="survey-option"><input type="radio" name="s3" value="Әсер етпейді"> Әсер етпейді</label>
+    </div></fieldset>
+    <fieldset><legend>4. Eco-Quest сияқты жобалардың оқушылардың экологиялық мәдениетін қалыптастыруға әсері қандай болмақ?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s4" value="Мәдениет пен жауапкершілік артады" required> Оқушылардың экологиялық мәдениеті мен жауапкершілігі айтарлықтай артады</label>
+      <label class="survey-option"><input type="radio" name="s4" value="Кейбір оқушыларға тиімді"> Тек кейбір оқушыларға немесе жекелеген тақырыптарда ғана тиімді болады</label>
+      <label class="survey-option"><input type="radio" name="s4" value="Белгісіз немесе өзгеріс болмайды"> Белгісіз / Өзгеріс болмайды</label>
+    </div></fieldset>
+    <fieldset><legend>5. Эко-квестке қатысу барысында сіз үшін ең маңызды нәрсе не?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s5" value="Қызықты тапсырмалар" required> Қызықты әрі бәсекелестікке толы интерактивті тапсырмалар</label>
+      <label class="survey-option"><input type="radio" name="s5" value="Экологиялық мәселелерді түсіну"> Экологиялық мәселелер мен табиғатты қорғау жолдарын терең түсіну</label>
+      <label class="survey-option"><input type="radio" name="s5" value="Топпен жұмыс"> Топпен жұмыс істеп, бірлесіп шешім қабылдау</label>
+    </div></fieldset>
+    <fieldset><legend>6. Экологиялық сабақтардағы ойын құралдары (квест станциялары, эко-челлендждер, ұпайлар мен бейдждер) сізге қызықты ма?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s6" value="Иә" required> Иә</label><label class="survey-option"><input type="radio" name="s6" value="Жоқ"> Жоқ</label>
+    </div></fieldset>
+    <fieldset><legend>7. Болашақта экология сабақтарын немесе сыныптан тыс шараларды Eco-Quest форматында өткізуді қалайсыз ба?</legend><div class="option-list">
+      <label class="survey-option"><input type="radio" name="s7" value="Иә" required> Иә</label><label class="survey-option"><input type="radio" name="s7" value="Жоқ"> Жоқ</label><label class="survey-option"><input type="radio" name="s7" value="Білмеймін"> Білмеймін</label>
+    </div></fieldset>
+    <div class="survey-actions"><button class="btn" type="submit">Сауалнаманы аяқтау</button><button class="btn secondary" type="reset">Тазалау</button></div>
+    <div class="survey-result" id="surveyResult" aria-live="polite"></div>
+  </form>
+</section>
+</main>
+<footer><strong>🌱 Eco-Quest</strong><br>Табиғатты қорғау — әрқайсымыздан басталады.<br><span class="small" style="color:#c2d9ca">Экологиялық сауаттылық • Жауапкершілік • Бірлескен әрекет</span></footer>
+<script>
+const questions = [
+{stage:0,q:"Экология нені зерттейді?",a:["Тірі ағзалардың бір-бірімен және қоршаған ортамен байланысын","Тек ғарыш денелерін","Компьютер құрылғыларын"],c:0,why:"Экология тірі ағзалар мен олардың қоршаған ортасының байланысын зерттейді."},
+{stage:0,q:"Табиғи ресурстарды үнемдеу не үшін қажет?",a:["Қоршаған ортаны қорғап, ресурстарды болашаққа сақтау үшін","Қалдықтарды көбейту үшін","Тек электр қуатын көп жұмсау үшін"],c:0,why:"Суды, энергияны және шикізатты үнемдеу табиғатқа түсетін салмақты азайтады."},
+{stage:0,q:"Экологиялық мәдениетке қай әрекет жатады?",a:["Қоқысты кез келген жерге тастау","Табиғатты қорғауға жауапкершілікпен қарау","Суды босқа ағызу"],c:1,why:"Экологиялық мәдениет — табиғатқа жауапты көзқарас пен күнделікті пайдалы әдеттер."},
+{stage:1,q:"Қағаз қалдығын қайда тапсырған дұрыс?",a:["Өзенге тастау","Қайта өңдеуге арналған бөлек жинау орнына","Аулаға көму"],c:1,why:"Қағазды бөлек жинау оны қайта өңдеуге мүмкіндік береді."},
+{stage:1,q:"Қай затты қайта пайдалануға болады?",a:["Бір рет қолданылатын лас майлықты","Көп рет қолданылатын су бөтелкесін","Жарамсыз тағам қалдығын"],c:1,why:"Қайта пайдаланылатын бөтелке бір реттік пластик қалдықтарын азайтады."},
+{stage:1,q:"Батарейканы неге арнайы жинау орнына өткізу керек?",a:["Құрамындағы зиянды заттар топырақ пен суға таралуы мүмкін","Ол қағазға айналады","Ол табиғатта бір күнде жоғалады"],c:0,why:"Батарейкаларды тұрмыстық қоқыспен араластырмай, арнайы қабылдау орнына тапсыру керек."},
+{stage:2,q:"Тіс тазалағанда суды қалай үнемдеуге болады?",a:["Кранды ашық қалдыру","Қажет болмаған кезде кранды жабу","Суды барынша ұзақ ағызу"],c:1,why:"Кранды жауып қою ауызсуды үнемдеудің қарапайым тәсілі."},
+{stage:2,q:"Ауаның ластануын азайтуға қай әрекет көмектеседі?",a:["Қысқа қашықтыққа жаяу жүру немесе велосипед тебу","Қоқысты өртеу","Көлікті себепсіз ұзақ жүргізу"],c:0,why:"Жаяу жүру мен велосипед пайдалану көлік шығарындыларын азайтуға көмектеседі."},
+{stage:2,q:"Электр қуатын үнемдеудің дұрыс жолы қайсы?",a:["Бөлмеден шыққанда жарықты сөндіру","Қажетсіз шамдарды қосып қою","Құрылғыларды үнемі қосулы ұстау"],c:0,why:"Қажетсіз жарықты сөндіру энергияны үнемдейді."},
+{stage:3,q:"Өсімдіктер табиғатқа қандай пайда әкеледі?",a:["Оттегі бөледі және көптеген ағзаға мекен болады","Ауаны міндетті түрде ластайды","Суды мүлде қажет етпейді"],c:0,why:"Өсімдіктер фотосинтез арқылы оттегі бөледі және экожүйелерді қолдайды."},
+{stage:3,q:"Жабайы жануарларды қорғаудың дұрыс тәсілі қандай?",a:["Олардың мекен ету ортасын сақтау","Ұяларын бұзу","Жануарларды себепсіз мазалау"],c:0,why:"Мекен ету ортасын қорғау жануарлардың тіршілігі үшін маңызды."},
+{stage:3,q:"Биоалуантүрлілік дегеніміз не?",a:["Тек бір өсімдік түрінің болуы","Тірі ағзалар түрлерінің алуан түрлілігі","Тек ауа райының өзгеруі"],c:1,why:"Биоалуантүрлілікке өсімдіктер, жануарлар, саңырауқұлақтар және басқа ағзалардың алуан түрлілігі жатады."},
+{stage:4,q:"Мектеп ауласында қоқыс көрсең, ең дұрыс әрекет қандай?",a:["Қауіпсіз болса, оны тиісті жәшікке салу немесе жауапты адамға хабарлау","Қоқысты басқа жерге лақтыру","Оған мән бермеу"],c:0,why:"Қауіпсіздік ережесін сақтап, қоқысты дұрыс жинау — нақты экологиялық әрекет."},
+{stage:4,q:"Сыныппен бірге қандай эко-жоба ұйымдастыруға болады?",a:["Қоқысты сұрыптау және қайта қолдану акциясын","Қағазды әдейі ысырап ету жарысын","Суды босқа ағызу сайысын"],c:0,why:"Сұрыптау акциясы оқушылардың ортақ жауапкершілігін дамытады."},
+{stage:4,q:"Eco-Quest-тен кейін экологиялық әдетті қалай бекіткен дұрыс?",a:["Күнделікті өмірде суды, энергияны үнемдеп, қалдықты сұрыптау","Барлық тапсырманы ұмыту","Қоқысты бұрынғыдай кез келген жерге тастау"],c:0,why:"Экологиялық білім күнделікті әрекетке айналғанда ғана тұрақты әдет қалыптасады."}
+];
+const stageNames=["ЭКО-БІЛІМ","ҚАЛДЫҚТАР","СУ МЕН АУА","БИОАЛУАНТҮРЛІЛІК","ЭКО-ШЕШІМ"];
+let index=0,score=0,answered=false;
+const $=id=>document.getElementById(id);
+function render(){
+  answered=false;
+  const q=questions[index];
+  $("progressText").textContent=`${index+1} / ${questions.length} сұрақ`;
+  $("scoreText").textContent=`Ұпай: ${score}`;
+  $("progressFill").style.width=`${index/questions.length*100}%`;
+  $("qmeta").textContent=`${q.stage+1}-КЕЗЕҢ · ${stageNames[q.stage]}`;
+  $("question").textContent=q.q;$("feedback").textContent="";$("nextBtn").disabled=true;
+  $("answers").innerHTML="";
+  q.a.forEach((answer,i)=>{
+    const label=document.createElement("label");label.className="answer";
+    label.innerHTML=`<input type="radio" name="answer" value="${i}"><span>${String.fromCharCode(65+i)}. ${answer}</span>`;
+    label.addEventListener("click",()=>choose(i,label));$("answers").appendChild(label);
+  });
+  document.querySelectorAll(".stage").forEach((el,i)=>{el.className="stage"+(i===q.stage?" active":i<q.stage?" done":"");});
+}
+function choose(choice,label){
+ if(answered)return;answered=true;const q=questions[index];const labels=[...document.querySelectorAll(".answer")];
+ labels.forEach((el,i)=>{el.querySelector("input").disabled=true;if(i===q.c)el.classList.add("correct");});
+ if(choice===q.c){score++;$("feedback").textContent="Дұрыс! "+q.why;}else{label.classList.add("wrong");$("feedback").textContent="Бұл жолы дұрыс емес. "+q.why;}
+ $("scoreText").textContent=`Ұпай: ${score}`;$("nextBtn").disabled=false;
+ $("nextBtn").textContent=index===questions.length-1?"Нәтижені көру →":"Келесі сұрақ →";
+}
+function next(){
+ if(!answered)return;index++;
+ if(index>=questions.length){$("quizArea").style.display="none";$("result").style.display="block";$("progressText").textContent="15 / 15 сұрақ";$("progressFill").style.width="100%";$("finalScore").textContent=`${score} / 15`;
+ let msg,emoji;if(score>=13){msg="Тамаша! Сен — нағыз табиғат қорғаушысысың!";emoji="🏆"}else if(score>=9){msg="Жақсы нәтиже! Экологиялық біліміңді күнделікті әрекетпен толықтыр.";emoji="🌟"}else{msg="Жақсы бастама! Қайта ойнап, экологиялық біліміңді нығайт.";emoji="🌱"}
+ $("resultMessage").textContent=msg;$("resultEmoji").textContent=emoji;return;
+ }render();
+}
+function restart(){index=0;score=0;$("quizArea").style.display="block";$("result").style.display="none";render();}
+$("nextBtn").addEventListener("click",next);$("restartBtn").addEventListener("click",restart);$("playAgain").addEventListener("click",restart);render();
+$("surveyForm").addEventListener("submit",e=>{
+ e.preventDefault();const data=new FormData(e.target);let lines=[];
+ for(let i=1;i<=7;i++){const v=data.get("s"+i);if(!v){return;}lines.push(`<li><strong>${i}-сұрақ:</strong> ${escapeHtml(v)}</li>`);}
+ $("surveyResult").innerHTML=`<strong>Сауалнама аяқталды! Рақмет!</strong><p>Сіздің жауаптарыңыз:</p><ol>${lines.join("")}</ol><p class="small">Бұл демо-нұсқа жауаптарды серверге жібермейді және бет жабылған соң сақтамайды.</p>`;
+ $("surveyResult").style.display="block";$("surveyResult").scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));}
+$("surveyForm").addEventListener("reset",()=>{setTimeout(()=>{$("surveyResult").style.display="none";$("surveyResult").innerHTML="";},0);});
+</script>
+</body>
+</html>
